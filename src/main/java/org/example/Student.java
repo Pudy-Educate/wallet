@@ -1,17 +1,49 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class Student {
     private String name;
-    private int semester;
-    private boolean isActive;
+    private int age;
+    private List<String> enrolledCourses;
+    private HashMap<String,String> courseGrades;
 
-    public Student(String name, int semester, boolean isActive) {
+    public Student(String name, int age) {
         this.name = name;
-        this.semester = semester;
-        this.isActive = isActive;
+        this.age = age;
+        this.enrolledCourses = new ArrayList<>();
+        this.courseGrades = new HashMap<String, String>();
     }
 
-    public boolean isDoingMBKM(){
-        return semester>=6 && isActive;
+    public String getName() {
+        return name;
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void enrollCourse(String course) {
+        enrolledCourses.add(course);
+    }
+
+    public List<String> getEnrolledCourses() {
+        return enrolledCourses;
+    }
+
+    public void setGrade(String course, String grade) {
+        courseGrades.put(course , grade);
+    }
+
+    public String getGrade(String course) {
+        for (String coursename: courseGrades.keySet()) {
+            if (course==coursename){
+                return courseGrades.get(coursename);
+            }
+        }
+        return null;
+    }
+
 }
