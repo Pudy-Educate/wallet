@@ -1,13 +1,35 @@
 package org.example;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class WalletTest {
-    Wallet dompet = new Wallet("Budi");
+    private static Wallet dompet;
+    private static int count =1;
+
+    @BeforeAll
+    static void setup(){
+        System.out.println("Start test");
+    }
+    @BeforeEach
+    void init(){
+        dompet = new Wallet("Budi");
+    }
+
+    @AfterEach
+    void tearDown(){
+        System.out.println("Test "+count+" done");
+        count++;
+    }
+
+    @AfterAll
+    static void tearDownAll(){
+        dompet = null;
+        System.out.println("End test");
+    }
+
     @Test
     void testSetOwnerValid() {
         dompet.setOwner("Ahmad");
